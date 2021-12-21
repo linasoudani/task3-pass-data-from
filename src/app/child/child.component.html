@@ -1,0 +1,107 @@
+<p>child works!</p>
+ 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-danger">
+                <div class="panel-heading text-center">Registration</div>
+                <div class="panel-body">
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+						<div class="form-group">
+							<label for="fname">First Name</label>
+							<input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors}"  placeholder="Example: John">
+                            <div *ngIf="submitted && f['firstName'].errors " class="invalid-feedback">
+                                <div *ngIf="f['firstName'].errors['maxlength']"> The first name must not exceed 25 characters</div>
+                                <div *ngIf="f['firstName'].errors['required'] ">First Name is required</div>
+                            </div>
+        
+						</div>
+                        <div class="form-group">
+							<label for="lname">Last Name</label>
+							<input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['lastName'].errors }" placeholder="Example: Doe">
+                            <div *ngIf="submitted && f['lastName'].errors" class="invalid-feedback">
+                                <div *ngIf="f['lastName'].errors['maxlength']"> The Last name must not exceed 25 characters</div>
+                                <div *ngIf="f['lastName'].errors['required'] ">Last Name is required</div>
+                                
+                            </div>
+        
+                        </div>
+						
+                       
+						<div class="form-group">
+							<label for="emailaddr">Email Address</label>
+							<input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" placeholder="Example: john.doe@gmail.com">
+                            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                <div *ngIf="f['email'].errors['required'] ">Email is required</div>
+                                <div *ngIf="f['email'].errors['email'] && f['email'].touched">Email must be a valid email address</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+							<label for="gender">Company Name</label>
+                            <input type="text" formControlName="Company" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['Company'].errors }" placeholder="BenchMatrix">
+                            <div *ngIf="submitted && f['Company'].errors" class="invalid-feedback">
+                                <div *ngIf="f['Company'].errors['required'] ">Company name is required</div>
+                           
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Date of joining</label>
+                            
+                                
+                                        <input  class="form-control " [ngClass]="{ 'is-invalid': submitted && f['date'].errors }" formControlName="date" matInput [matDatepicker]="picker" [min]="minDate" placeholder="Choose a date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker ></mat-datepicker>
+                                        <div *ngIf="submitted && f['date'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['date'].errors['required'] ">Date Joining is required</div>
+                                       
+                                        </div>
+                                     
+                        </div>
+                        
+                           
+                         
+
+                        <div class="form-group ">
+                            <label for="comment"> Role Description</label>
+                            <textarea   [ngClass]="{ 'is-invalid': submitted && f['Role'].errors }" formControlName="Role" cols="40" rows="5" class="form-control"></textarea>
+                            <div *ngIf="submitted && f['Role'].errors" class="invalid-feedback">
+                                <div *ngIf="f['Role'].errors['required'] ">Role Description is required</div>
+                           
+                            </div>
+                        </div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"placeholder="">
+                            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                <div *ngIf="f['password'].errors['required']">Password is required</div>
+                                <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
+                            </div>
+                        
+                        </div>
+						<div class="form-group">
+							<label for="verifypass">Verify Password</label>
+							<input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }" placeholder="">
+                            <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
+                                <div *ngIf="f['confirmPassword'].errors['required']">Confirm Password is required</div>
+                                <div *ngIf="f['confirmPassword'].errors['mustMatch']">Passwords must match</div>
+                            </div>
+                        </div>
+						<div class="form-group text-center">
+							<button type="submit" class="btn btn-danger btn-lg" name="submit">Submit</button>
+                            <button class="btn btn-danger btn-lg" type="reset" (click)="onReset()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

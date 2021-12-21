@@ -1,0 +1,36 @@
+
+<div class="row  justify-content-center
+align-items-center" style="height:60px">
+<div class="col-4  h2">
+  pass data from child to parent
+</div>
+
+</div>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col"># id</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Email adress</th>
+        <th scope="col">Company name</th>
+        <th scope="col">Date joining</th>
+        <th scope="col">Role Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of list,index as i">
+        <td>{{i}}</td>
+        <td> {{ task.firstName }} </td>
+        <td> {{task.lastName }} </td>
+        <td> {{task.email }} </td>
+        <td>{{task.Company}}</td>
+        <td> {{task.date | date:'fullDate' }} </td>
+        <td> {{task.Role | truncate:50:task.showAll }} 
+          <button class="btn btn-danger"(click)="triggerReadMore(task)" *ngIf="!task.showAll">Read More</button>
+          <button class="btn btn-danger"(click)="triggerReadLess(task)" *ngIf="task.showAll">Read less</button>
+        </td>
+    </tbody>
+  </table>
+  
+<app-child  (parentFunction)="parentFunction($event)"></app-child>
